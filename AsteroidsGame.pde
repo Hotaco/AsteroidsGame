@@ -1,3 +1,4 @@
+Spaceship bob = new Spaceship();
 Star[] patrick = new Star[500];
 public void setup() 
 {
