@@ -1,14 +1,34 @@
 class Asteroid extends Floater
 {
   protected int rotation;
-  private int min = 8;
-  private int max = 15;
+  private int min;
+  private int max;
+  private int size;
+  private int collision;
+  
   public Asteroid()
   {
     rotation = ((int)(Math.random()*5));
-    corners = 8;  //the number of corners, a triangular floater has 3   
+    corners = 8; 
     xCorners = new int[corners];   
     yCorners =  new int[corners];
+    size = (int)(Math.random()*3);
+    determineSize();
+    myStroke = color(255);
+    myColor = color(0);   
+    myCenterX = ((int)(Math.random()*width-100)); 
+    myCenterY = ((int)(Math.random()*height-100)); 
+    myPointDirection = (int)(Math.random()*360);
+  }
+  
+  public void move()
+  {
+    super.move(); 
+    turn(rotation);
+  }
+  
+  public void asteroidDesign()
+  {
       xCorners[0] = (int)(Math.random()*min)-max;
       yCorners[0] = (int)(Math.random()*min)-max;
       xCorners[1] = 0;
@@ -25,18 +45,51 @@ class Asteroid extends Floater
       yCorners[6] = (int)(Math.random()*max)+min;
       xCorners[7] = (int)(Math.random()*min)-max;
       yCorners[7] = 0;
-      
-    myColor = color(255);   
-    myCenterX = ((int)(Math.random()*400)); 
-    myCenterY = ((int)(Math.random()*400)); //holds center coordinates   
-    myXspeed = ((int)(Math.random()*4)-2);
-    myYspeed = ((int)(Math.random()*4)-2); //holds the speed of travel in the x and y directions   
-    myPointDirection = (int)(Math.random()*360);
   }
   
-  public void move()
+  public void largeAsteroid()
   {
-    super.move();
-    turn(rotation);
+      collision = 35;
+      min = 17;
+      max = 25;
+      myXspeed = ((int)(Math.random()*2)-1);
+      myYspeed = ((int)(Math.random()*2)-1);
+      asteroidDesign();
+  }
+  
+  public void mediumAsteroid()
+  {
+      min = 12;
+      max = 15;
+      collision = 25;
+      myXspeed = ((int)(Math.random()*4)-2);
+      myYspeed = ((int)(Math.random()*4)-2);
+      asteroidDesign();
+  }
+  
+  public void smallAsteroid()
+  {
+      collision = 15;
+      min = 5;
+      max = 7;
+      myXspeed = ((int)(Math.random()*6)-3);
+      myYspeed = ((int)(Math.random()*6)-3);
+      asteroidDesign();
+  }
+  
+  public void determineSize()
+  {
+      if(size == 0)
+      {
+        largeAsteroid();
+      }
+      else if(size == 1)
+      {
+        mediumAsteroid();
+      }
+      else if(size == 2)
+      {
+        smallAsteroid();
+      }
   }
 }
