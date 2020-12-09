@@ -13,7 +13,8 @@ class Spaceship extends Floater
       yCorners[2] = 8;
       xCorners[3] = -2;
       yCorners[3] = 0;
-    myColor = color(18, 197, 253);   
+    myColor = color(255);
+    myStroke = color(0);
     myCenterX = 250; 
     myCenterY = 250; //holds center coordinates   
     myXspeed = 0;
@@ -31,9 +32,7 @@ class Spaceship extends Floater
   }
   
   public void show ()  //Draws the floater at the current position  
-  {             
-    fill(myColor);   
-    stroke(myColor);    
+  {                
     
     //translate the (x,y) center of the ship to the correct position
     translate((float)myCenterX, (float)myCenterY);
