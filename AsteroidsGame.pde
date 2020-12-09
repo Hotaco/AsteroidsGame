@@ -1,15 +1,18 @@
-//Spaceship
-Spaceship bob = new Spaceship();
-boolean up, down, left, right;
-//Stars
-Star[] patrick = new Star[500];
-//Asteroids
-ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
-int numAsteroids = 20;
+//Variables
+
+  //Spaceship
+  Spaceship bob = new Spaceship();
+  boolean up, down, left, right;
+  //Stars
+  Star[] patrick = new Star[500];
+  //Asteroids
+  ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
+  int numAsteroids = 25;
+  
 
 public void setup() 
 {
-  size(500,500);
+  size(700,700);
   //Creating Stars
   for(int i = 0; i < patrick.length; i++)
   {
@@ -28,7 +31,7 @@ public void setup()
 public void draw() 
 {
   background(0);
-  //Creating Stars
+  //Showing Stars
   for(int i = 0; i < patrick.length; i++)
   {
     patrick[i].show();
@@ -37,21 +40,23 @@ public void draw()
   {
     patrick[i].show();
   }
-  //Creating Asteroids
+  //Showing and moving Asteroids
+  //Collision
   for(int i = 0; i < asteroids.size(); i++)
   {
     asteroids.get(i).show();
     asteroids.get(i).move();
     
-    if(dist((float)asteroids.get(i).myCenterX,(float)asteroids.get(i).myCenterY,(float)bob.myCenterX,(float)bob.myCenterY) < 30)
+    //Collision with Ship
+    if(dist((float)asteroids.get(i).myCenterX,(float)asteroids.get(i).myCenterY,(float)bob.myCenterX,(float)bob.myCenterY) < asteroids.get(i).collision)
     {
       asteroids.remove(i);        
     } 
-}
-  //Showing Spaceship
+  }
+  //Showing and Moving Spaceship
   bob.show();
   bob.move();
-  //Spaceship
+  //Spaceship Move
   if(keyPressed)
   {
     if(up == true)
@@ -59,14 +64,14 @@ public void draw()
       bob.accelerate(0.085);
     }
     if(left == true)
-    {
+    {  
       bob.turn(-5);
     }
     if(down == true)
     {
-      bob.accelerate(-0.1);
+      bob.accelerate(-0.085);
     }
-    if(right == true)
+    if(right == true) 
     {
       bob.turn(5);
     }
