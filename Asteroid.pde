@@ -49,7 +49,7 @@ class Asteroid extends Floater
   
   public void largeAsteroid()
   {
-      collision = 35;
+      collision = 40;
       min = 17;
       max = 25;
       myXspeed = ((int)(Math.random()*2)-1);
@@ -61,7 +61,7 @@ class Asteroid extends Floater
   {
       min = 12;
       max = 15;
-      collision = 25;
+      collision = 30;
       myXspeed = ((int)(Math.random()*4)-2);
       myYspeed = ((int)(Math.random()*4)-2);
       asteroidDesign();
