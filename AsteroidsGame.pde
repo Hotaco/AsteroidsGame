@@ -126,3 +126,4 @@ public void keyReleased()
   if(key == 'a') left = false;
   if(key == 'd') right = false;
 }
+
