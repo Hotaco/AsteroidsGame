@@ -7,9 +7,9 @@
   Star[] patrick = new Star[500];
   //Asteroids
   ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
+  ArrayList <Bullet> bullet = new ArrayList <Bullet>();
   int numAsteroids = 25;
   
-
 public void setup() 
 {
   size(700,700);
@@ -51,8 +51,30 @@ public void draw()
     if(dist((float)asteroids.get(i).myCenterX,(float)asteroids.get(i).myCenterY,(float)bob.myCenterX,(float)bob.myCenterY) < asteroids.get(i).collision)
     {
       asteroids.remove(i);        
-    } 
+    }
   }
+  for(int i = 0; i < bullet.size(); i++)
+  {
+    bullet.get(i).show();
+    bullet.get(i).move();
+  }
+  
+  //Collision Between asteroid and bullet
+  
+  for(int i = 0; i < bullet.size(); i++)
+  {
+    for(int j = 0; j < asteroids.size(); j++)
+    {
+      if(dist((float)asteroids.get(j).myCenterX,(float)asteroids.get(j).myCenterY,(float)bullet.get(i).myCenterX,(float)bullet.get(i).myCenterY) < 
+      asteroids.get(j).collision)
+      {
+        bullet.remove(i);
+        asteroids.remove(j);
+        break;
+      }
+    }    
+  }
+  
   //Showing and Moving Spaceship
   bob.show();
   bob.move();
@@ -84,6 +106,11 @@ public void keyPressed()
   if(key == 'f')
   {
     bob.hyperSpace();
+  }
+  
+  if(key == ' ')
+  {
+    bullet.add(new Bullet(bob));
   }
   
   if(key == 'w') up = true;
