@@ -108,7 +108,7 @@ public void keyPressed()
     bob.hyperSpace();
   }
   
-  if(key == ' ')
+  if(key == 'p')
   {
     bullet.add(new Bullet(bob));
   }
